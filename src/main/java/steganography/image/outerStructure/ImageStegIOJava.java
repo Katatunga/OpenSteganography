@@ -3,14 +3,11 @@ package steganography.image.outerStructure;
 import steganography.image.innerStructure.distortion.DistortionFunction;
 import steganography.image.innerStructure.distortion.JUniward;
 import steganography.image.innerStructure.embedders.Embedder;
-import steganography.image.innerStructure.embedders.dct.dcras.MarkingDcrasEmbedder;
 import steganography.image.innerStructure.embedders.dct.dmas.DmasEmbedder;
-import steganography.image.innerStructure.embedders.dct.dmas.MarkingEmbedder;
 import steganography.image.innerStructure.embedders.spatial.PixelBit;
 import steganography.image.innerStructure.embedders.dct.dcras.DcrasEmbedder;
 import steganography.image.innerStructure.encoders.Encoder;
 import steganography.image.innerStructure.encoders.GeneralEncoder;
-import steganography.image.innerStructure.encoders.plain.MarkingPlainEncoder;
 import steganography.image.innerStructure.encoders.plain.PlainEncoder;
 import steganography.image.innerStructure.encoders.stc.LossLessStcEncoder;
 import steganography.image.innerStructure.encoders.stc.StcEncoder;
@@ -319,14 +316,6 @@ public class ImageStegIOJava implements ImageStegIO{
     private Encoder createEncoder(long seed, boolean sequential) {
         switch (this.preset) {
 
-            case TEST:
-                return new MarkingPlainEncoder(
-                        new MarkingDcrasEmbedder(Rgb2YCbCr::new, new FastDct8(), .85f),
-                        new BlockShuffleOverlay(bufferedImage, seed, 16/*, noSingleColors*/),
-                        false
-                );
-
-
             case COMPRESSION_RESISTANCE:
                 return new PlainEncoder<>(
                         new DcrasEmbedder(Rgb2YCbCr::new, new FastDct8(), .65f, 3, 2),
@@ -338,6 +327,7 @@ public class ImageStegIOJava implements ImageStegIO{
                 return new LossLessStcEncoder<>(
                         new DmasEmbedder(Rgb2YCbCr::new, new FastDct8(), .95f, 7, 7),
                         new BlockShuffleOverlay(bufferedImage, seed, 8,
+                                // the use of the second Predicate makes this profile more stable, but is untested
                                 allPixelsOpaque/*.and(noSingleColors)*/),
                         new JUniward(Rgb2YCbCr::new, new Wavelet()),
                         sequential,

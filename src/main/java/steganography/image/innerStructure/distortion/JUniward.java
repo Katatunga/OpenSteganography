@@ -4,6 +4,11 @@ import steganography.image.operation.pixelTranslation.PixelTranslator;
 import steganography.image.operation.pixelTranslation.TranslatorSupplier;
 import steganography.transforms.Transform;
 
+/**
+ * Implementation of J-Uniward. See paper:
+ * <em>Universal distortion function for steganography in an arbitrary domain</em>
+ * (DOI: 10.1186/1687-417X-2014-1)
+ */
 public class JUniward implements DistortionFunction<int[]> {
     private final Transform<double[][]> wvt;
     protected final TranslatorSupplier<PixelTranslator> translatorSupplier;

@@ -4,6 +4,9 @@ import steganography.exceptions.DamagedMessageException;
 import steganography.exceptions.encoder.EncoderException;
 import steganography.image.exceptions.ImageCapacityException;
 
+/**
+ * Interface to be implemented by all encoders, managing the embedding process
+ */
 public interface Encoder {
 
     /**

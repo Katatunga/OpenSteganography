@@ -5,6 +5,9 @@ import steganography.image.operation.pixelTranslation.PixelTranslator;
 import steganography.image.operation.pixelTranslation.TranslatorSupplier;
 import steganography.transforms.Transform;
 
+/**
+ * Super class to block Embedders using DCT-coefficients to embed
+ */
 public abstract class DctEmbedder extends BlockEmbedder {
 
     /**

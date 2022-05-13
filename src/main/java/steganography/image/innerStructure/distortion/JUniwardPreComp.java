@@ -7,7 +7,7 @@ import steganography.transforms.Transform;
 import steganography.util.Quantizer;
 
 /**
- * Not actually used but could be inspirational while trying to combat "wet pixels" (see row 33 & 34)
+ * Not actually used but could be inspirational while trying to combat "wet pixels" (see row 33 and 34)
  */
 public class JUniwardPreComp extends JUniward {
 

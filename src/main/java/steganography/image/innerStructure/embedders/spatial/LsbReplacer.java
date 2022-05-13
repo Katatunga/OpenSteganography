@@ -3,6 +3,9 @@ package steganography.image.innerStructure.embedders.spatial;
 import steganography.exceptions.encoder.EmbedderInputException;
 import steganography.image.innerStructure.embedders.PixelEmbedder;
 
+/**
+ * This is a showcase for easy embedding. Not resistant against any attack
+ */
 public class LsbReplacer extends PixelEmbedder {
 
     @Override

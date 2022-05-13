@@ -7,6 +7,12 @@ import steganography.image.innerStructure.overlays.abstracts.BuffImgOverlay;
 
 import java.util.BitSet;
 
+/**
+ * An Encoder that just encodes the payload, bit by bit, into the cover image.
+ * @see #PlainEncoder
+ * @param <T> Representation of pixel values dictated by return value of
+ *           the used {@link BuffImgOverlay}
+ */
 public class PlainEncoder<T> extends GeneralEncoder<T> {
 
     /**

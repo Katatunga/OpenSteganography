@@ -4,6 +4,11 @@ import steganography.image.innerStructure.distortion.DistortionFunction;
 import steganography.image.innerStructure.embedders.Embedder;
 import steganography.image.innerStructure.overlays.abstracts.BuffImgOverlay;
 
+/**
+ * Super class to Encoders using a DistortionFunction
+ * @param <T> Representation of pixel values dictated by return value of
+ *           the used {@link BuffImgOverlay}
+ */
 public abstract class DistortionEncoder<T> extends GeneralEncoder<T> {
     protected final DistortionFunction<T> distortion;
 

@@ -2,6 +2,12 @@ package steganography.image.innerStructure.embedders;
 
 import steganography.exceptions.encoder.EmbedderInputException;
 
+/**
+ * Interface to be implemented by all Embedders that are used to manipulate
+ * pixel values of any gorm to embed a message
+ * @param <T> form of the pixel values, returned by an
+ * {@link steganography.image.innerStructure.overlays.abstracts.BuffImgOverlay Overlay}
+ */
 public interface Embedder<T> {
 
     /**

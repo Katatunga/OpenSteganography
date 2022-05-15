@@ -6,6 +6,7 @@ import steganography.Steganography;
 import steganography.exceptions.*;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -78,8 +79,12 @@ public class TestBasicUsage {
 
         // create an ImageSteg Object (arguments optional)
         Steganography steganography = new ImageSteg();
-        // encode the payload into the image
+
+        // encode the payload into the image.
         byte[] stegoImageBytes = steganography.encode(imageBytes, payloadBytes);
+
+        // stegoImageBytes is a complete image file stored in a byte array and could be stored on disk like as follows:
+        // new FileOutputStream("path/to/imageOut.jpg").write(stegoImageBytes);
 
         // decode with the same ImageSteg
         byte[] decodedSame = steganography.decode(stegoImageBytes);
@@ -89,7 +94,6 @@ public class TestBasicUsage {
 
         Assertions.assertArrayEquals(decodedSame, decodedOther);
         Assertions.assertEquals(new String(decodedSame), "Hello World");
-
     }
 
     /**

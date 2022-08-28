@@ -153,6 +153,12 @@ public class StcEncoder<T> extends DistortionEncoder<T> {
         int[] hHat = build_H_hat(calculateK(maxUnits, bitLen), this.random);
         BitSet steg = viterbi_stc(cvrRep, maxUnits, BitSet.valueOf(payload), bitLen, rho, hHat);
 
+        if (!sequentialMode) {
+            BitSet cvrEnd = (BitSet) cvrRep.clone();
+            cvrEnd.clear(0, steg.length());
+            steg.or(cvrEnd);
+        }
+
         // Embed the result
         embed(steg, cvrRep, maxUnits);
 
